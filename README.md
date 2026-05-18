@@ -167,4 +167,18 @@ WHERE strftime('%Y-%m', c.fecha) = '2024-08';
 <br>
 <img src="./imagenes_itba/query12.png" width="250"/>
 
+### Query 13:
+[13_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/13_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT m.nombre, COUNT(*) AS veces_recetado
+FROM Recetas r
+JOIN Medicamentos m ON r.id_medicamento = m.id_medicamento
+WHERE r.id_medico = 2
+GROUP BY r.id_medicamento, m.nombre
+HAVING COUNT(*) > 1;
+
+
+```
+<br>
+<img src="./imagenes_itba/query13.png" width="250"/>
 
