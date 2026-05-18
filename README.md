@@ -182,3 +182,16 @@ HAVING COUNT(*) > 1;
 <br>
 <img src="./imagenes_itba/query13.png" width="250"/>
 
+### Query 14:
+[14_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/14_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT p.nombre, COUNT(*) AS total_recetas
+FROM Recetas r
+JOIN Pacientes p ON r.id_paciente = p.id_paciente
+GROUP BY r.id_paciente, p.nombre
+ORDER BY total_recetas DESC;
+
+
+```
+<br>
+<img src="./imagenes_itba/query14.png" width="250"/>
