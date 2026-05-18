@@ -167,4 +167,46 @@ WHERE strftime('%Y-%m', c.fecha) = '2024-08';
 <br>
 <img src="./imagenes_itba/query12.png" width="250"/>
 
+### Query 13:
+[13_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/13_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT m.nombre, COUNT(*) AS veces_recetado
+FROM Recetas r
+JOIN Medicamentos m ON r.id_medicamento = m.id_medicamento
+WHERE r.id_medico = 2
+GROUP BY r.id_medicamento, m.nombre
+HAVING COUNT(*) > 1;
 
+
+```
+<br>
+<img src="./imagenes_itba/query13.png" width="250"/>
+
+### Query 14:
+[14_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/14_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT p.nombre, COUNT(*) AS total_recetas
+FROM Recetas r
+JOIN Pacientes p ON r.id_paciente = p.id_paciente
+GROUP BY r.id_paciente, p.nombre
+ORDER BY total_recetas DESC;
+
+
+```
+<br>
+<img src="./imagenes_itba/query14.png" width="250"/>
+
+### Query 15:
+[15_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/15_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT m.nombre, COUNT(*) AS total_recetas
+FROM Recetas r
+JOIN Medicamentos m ON r.id_medicamento = m.id_medicamento
+GROUP BY r.id_medicamento, m.nombre
+ORDER BY total_recetas DESC
+LIMIT 1;
+
+
+```
+<br>
+<img src="./imagenes_itba/query15.png" width="250"/>
