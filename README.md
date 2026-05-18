@@ -156,7 +156,15 @@ AND strftime('%Y-%m', fecha) = '2024-08';
 <img src="./imagenes_itba/query11.png" width="250"/>
 
 ### Query 12:
-### Query 13:
-### Query 14:
-### Query 15:
+[12_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/12_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT p.nombre, c.fecha, c.diagnostico
+FROM Consultas c
+JOIN Pacientes p ON c.id_paciente = p.id_paciente
+WHERE strftime('%Y-%m', c.fecha) = '2024-08';
+
+```
+<br>
+<img src="./imagenes_itba/query12.png" width="250"/>
+
 
