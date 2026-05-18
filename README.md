@@ -195,3 +195,18 @@ ORDER BY total_recetas DESC;
 ```
 <br>
 <img src="./imagenes_itba/query14.png" width="250"/>
+
+### Query 15:
+[15_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/15_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT m.nombre, COUNT(*) AS total_recetas
+FROM Recetas r
+JOIN Medicamentos m ON r.id_medicamento = m.id_medicamento
+GROUP BY r.id_medicamento, m.nombre
+ORDER BY total_recetas DESC
+LIMIT 1;
+
+
+```
+<br>
+<img src="./imagenes_itba/query15.png" width="250"/>
