@@ -322,3 +322,4 @@ ORDER BY total_consultas_menores DESC;
 <br>
 <img src="./imagenes_itba/query20.png" width="250"/>
 
+
