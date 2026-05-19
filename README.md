@@ -210,3 +210,115 @@ LIMIT 1;
 ```
 <br>
 <img src="./imagenes_itba/query15.png" width="250"/>
+
+### Query 16:
+[16_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/16_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT
+p.nombre AS nombre_paciente,
+c.fecha AS fecha_ultima_consulta,
+c.diagnostico
+FROM Consultas c
+JOIN Pacientes p
+ON c.id_paciente = p.id_paciente
+WHERE c.fecha = (
+SELECT MAX(c2.fecha)
+FROM Consultas c2
+WHERE c2.id_paciente = c.id_paciente
+)
+ORDER BY p.nombre; 
+
+
+
+```
+<br>
+<img src="./imagenes_itba/query16.png" width="250"/>
+
+### Query 17:
+[17_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/17_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT 
+    m.nombre AS nombre_medico,
+    p.nombre AS nombre_paciente,
+    COUNT(*) AS total_consultas
+FROM Consultas c
+JOIN Medicos m 
+    ON c.id_medico = m.id_medico
+JOIN Pacientes p 
+    ON c.id_paciente = p.id_paciente
+GROUP BY 
+    m.id_medico, m.nombre,
+    p.id_paciente, p.nombre
+ORDER BY 
+    m.nombre, p.nombre;
+
+```
+<br>
+<img src="./imagenes_itba/query17.png" width="250"/>
+
+### Query 18:
+[18_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/18_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT
+med.nombre AS nombre_medicamento,
+COUNT(*) AS total_recetas,
+m.nombre AS nombre_medico,
+p.nombre AS nombre_paciente
+FROM Recetas r
+JOIN Medicamentos med
+ON r.id_medicamento = med.id_medicamento
+JOIN Medicos m
+ON r.id_medico = m.id_medico
+JOIN Pacientes p
+ON r.id_paciente = p.id_paciente
+GROUP BY
+med.id_medicamento, med.nombre,
+m.id_medico, m.nombre,
+p.id_paciente, p.nombre
+ORDER BY total_recetas DESC; 
+
+```
+<br>
+<img src="./imagenes_itba/query18.png" width="250"/>
+
+### Query 19:
+[19InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/19_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT
+m.nombre AS nombre_medico,
+COUNT(DISTINCT c.id_paciente) AS total_pacientes
+FROM Consultas c
+JOIN Medicos m
+ON c.id_medico = m.id_medico
+GROUP BY m.id_medico, m.nombre
+ORDER BY total_pacientes DESC; 
+
+```
+<br>
+<img src="./imagenes_itba/query19.png" width="250"/>
+
+### Query 20:
+[20_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql](./QUERY/20_InfoMed_TP5_Rodriguez_Porjolovsky_Sayegh.sql)
+```sql
+SELECT
+m.nombre AS nombre_medico,
+COUNT(*) AS total_consultas_menores
+FROM Consultas c
+JOIN Medicos m
+ON c.id_medico = m.id_medico
+JOIN Pacientes p
+ON c.id_paciente = p.id_paciente
+WHERE
+(strftime('%Y', 'now') - strftime('%Y', p.fecha_nacimiento)
+- CASE
+WHEN strftime('%m-%d', 'now') < strftime('%m-%d', p.fecha_nacimiento)
+THEN 1
+ELSE 0
+END) < 18
+GROUP BY m.id_medico, m.nombre
+ORDER BY total_consultas_menores DESC; 
+
+```
+<br>
+<img src="./imagenes_itba/query20.png" width="250"/>
+
